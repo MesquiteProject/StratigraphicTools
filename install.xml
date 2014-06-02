@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<mesquite>
+	<MessagesFromHome>
+		<version>1</version>
+
+		<notice><!--Stratigraphic tools and stratADD install -->
+			<forBuildNumberEqualOrGreater>540</forBuildNumberEqualOrGreater>
+			<noticeNumber>3</noticeNumber>
+			<messageType>update</messageType>
+			<identity>stratigraphic</identity>
+			<updateVersion>003</updateVersion>
+			<packageName>Stratigraphic Tools and StratADD</packageName>
+			<explanation>
+			<![CDATA[
+			The Strat Add and Stratigraphic Tools packages for Mesquite, by Michel Laurin and colleagues.
+			]]>
+			</explanation>
+				<install>
+					<location>mesquite</location>
+					<file>stratigraphictools</file>
+					<url>http://mesquiteproject.org/packages/stratigraphictools/stratigraphictools.zip</url>
+					<treatment>unzip</treatment>
+					<updateVersion>003</updateVersion>
+				</install>
+				<install>
+					<location>mesquite</location>
+					<file>stratAdd</file>
+					<url>http://mesquiteproject.org/packages/stratigraphictools/stratAdd.zip</url>
+					<treatment>unzip</treatment>
+					<updateVersion>003</updateVersion>
+				</install>
+				<install>
+					<location>:query user</location>
+					<file>StratigraphicManuals</file>
+					<url>http://mesquiteproject.org/packages/stratigraphictools/manuals.zip</url>
+					<treatment>unzip</treatment>
+					<updateVersion>003</updateVersion>
+				</install>
+		</notice>
+	</MessagesFromHome>
+</mesquite>
