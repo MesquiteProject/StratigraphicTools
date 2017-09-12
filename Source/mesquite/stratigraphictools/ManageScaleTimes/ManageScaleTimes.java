@@ -1,5 +1,5 @@
 /* Code for stratigraphic tools package (http://mesquiteproject.org/... ).
-Copyright 2005 by Sébastien Josse, Thomas Moreau and Michel Laurin.
+Copyright 2005 by Sï¿½bastien Josse, Thomas Moreau and Michel Laurin.
 Based on Mesquite source code copyright 1997-2005 W. & D. Maddison.
 Available for Mesquite version 1.06
 Disclaimer:  The Mesquite source code is lengthy and we are few.  There are no doubt inefficiencies and goofs in this code. 
@@ -161,7 +161,7 @@ public class ManageScaleTimes extends CharMatrixManager {
 		ScaleData cData = (ScaleData)data;
 		StringBuffer blocks = new StringBuffer(cData.getNumChars()*cData.getNumTaxa()*10*cData.getNumItems());
 		blocks.append("BEGIN SCALE;" + StringUtil.lineEnding());
-		if (cData.getName()!=null &&  (getProject().getNumberCharMatrices()>1 || !NexusBlock.suppressTITLE)){
+		if (cData.getName()!=null &&  (getProject().getNumberCharMatrices()>1 || !NexusBlock.suppressNEXUSTITLESANDLINKS)){
 			blocks.append("\tTITLE  " + StringUtil.tokenize(cData.getName()) + ";" + StringUtil.lineEnding());
 		}
 

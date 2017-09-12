@@ -1,5 +1,5 @@
 /* Code for stratigraphic tools package (http://mesquiteproject.org/... ).
-Copyright 2005 by Sébastien Josse, Thomas Moreau and Michel Laurin.
+Copyright 2005 by Sï¿½bastien Josse, Thomas Moreau and Michel Laurin.
 Based on Mesquite source code copyright 1997-2005 W. & D. Maddison.
 Available for Mesquite version 1.06
 Disclaimer:  The Mesquite source code is lengthy and we are few.  There are no doubt inefficiencies and goofs in this code. 
@@ -226,10 +226,10 @@ class ArcTreeDrawing extends TreeDrawing  {
 	private void calculateLines(Tree tree, int node) {
 		for (int d = tree.firstDaughterOfNode(node); tree.nodeExists(d); d = tree.nextSisterOfNode(d))
 			calculateLines( tree, d);
-		lineTipY[node]=y[node];
-		lineTipX[node]=x[node];
-		lineBaseY[node]=y[tree.motherOfNode(node)];
-		lineBaseX[node]=x[tree.motherOfNode(node)];
+		lineTipY[node]=(int)y[node];
+		lineTipX[node]=(int)x[node];
+		lineBaseY[node]=(int)y[tree.motherOfNode(node)];
+		lineBaseX[node]=(int)x[tree.motherOfNode(node)];
 	}
 	/*_________________________________________________*/
 	private void calcBranchStuff(Tree tree, int drawnRoot) {
@@ -258,10 +258,10 @@ class ArcTreeDrawing extends TreeDrawing  {
 			g.setColor(Color.blue);
 			
 		if (treeDisplay.getOrientation()==TreeDisplay.DOWN || treeDisplay.getOrientation()==TreeDisplay.UP){
-			g.fillOval(x[node]-4, y[node], 8, 8);
+			g.fillOval((int)x[node]-4, (int)y[node], 8, 8);
 		}
 		else {
-			g.fillOval(x[node], y[node]-4, 8,8);
+			g.fillOval((int)x[node], (int)y[node]-4, 8,8);
 		}
 
 		g.setColor(tC);
@@ -270,10 +270,10 @@ class ArcTreeDrawing extends TreeDrawing  {
 	private   void drawOneBranch(Tree tree, Graphics g, int node, int start, int width, int adj) {
 		if (tree.nodeExists(node)) {
 			int nM = tree.motherOfNode(node);
-			int xN=x[node];
-			int xnM = x[nM];
-			int yN =y[node];
-			int ynM = y[nM];
+			int xN=(int)x[node];
+			int xnM = (int)x[nM];
+			int yN =(int)y[node];
+			int ynM = (int)y[nM];
 			boolean done = false;
 			try{
 				if (g instanceof Graphics2D) {
@@ -294,7 +294,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 						}
 						
 					}
-					else if (treeDisplay.getOrientation()==TreeDisplay.DOWN){ //¥¥¥¥
+					else if (treeDisplay.getOrientation()==TreeDisplay.DOWN){ //ï¿½ï¿½ï¿½ï¿½
 						if (xnM>xN){ //leans left
 							xN += width/2+start;
 							xnM += width/2;
@@ -327,7 +327,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 						}
 						
 					}
-					else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT){  //¥¥¥¥
+					else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT){  //ï¿½ï¿½ï¿½ï¿½
 						if (ynM>yN){ //leans right
 							yN += width/2+start;
 							ynM += width/2;
@@ -357,7 +357,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 						}
 					}
 
-					else if (treeDisplay.getOrientation()==TreeDisplay.DOWN){//¥¥¥¥
+					else if (treeDisplay.getOrientation()==TreeDisplay.DOWN){//ï¿½ï¿½ï¿½ï¿½
 						if (xnM>xN) {  //leans right
 							//g.setColor(Color.blue);
 							arc = new Arc2D.Double(xN, ynM, (xnM-xN)*2,  -(ynM - yN)*2, 90, 90, Arc2D.OPEN); // left
@@ -381,7 +381,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 							//g.drawRect(xnM-(xN-xnM), yN - (ynM - yN), (xN-xnM)*2,  (ynM - yN)*2);
 						}
 					}
-					else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT){ //¥¥¥¥
+					else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT){ //ï¿½ï¿½ï¿½ï¿½
 						if (ynM>yN) { //leans right
 							//g.setColor(Color.blue);
 							arc = new Arc2D.Double(xN - (xnM-xN), yN, -(xN-xnM)*2,  (ynM - yN)*2, 0, 90, Arc2D.OPEN); 
@@ -411,7 +411,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 					if (xnM > xN)  ynM += edgewidth-1-start;
 					else ynM+=start;
 				}
-				else if (treeDisplay.getOrientation()==TreeDisplay.DOWN){ //¥¥¥¥
+				else if (treeDisplay.getOrientation()==TreeDisplay.DOWN){ //ï¿½ï¿½ï¿½ï¿½
 					if (xnM > xN)  ynM -= edgewidth-1-start;
 					else ynM-=start;
 					xnM +=adj; //why this adj is needed, I don't know.  But it seems to work.
@@ -421,7 +421,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 					if (ynM > yN)  xnM -= edgewidth-1-start;
 					else xnM-=start;
 				}
-				else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT){  //¥¥¥¥
+				else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT){  //ï¿½ï¿½ï¿½ï¿½
 					if (ynM > yN) xnM += edgewidth-1-start;
 					else xnM+=start;
 					ynM +=adj;//why this adj is needed, I don't know.  But it seems to work.
@@ -443,7 +443,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 						xN++;
 					}
 
-					else if (treeDisplay.getOrientation()==TreeDisplay.DOWN){//¥¥¥¥
+					else if (treeDisplay.getOrientation()==TreeDisplay.DOWN){//ï¿½ï¿½ï¿½ï¿½
 						if (xnM>xN) {
 							g.drawArc(xN - start,ynM, (xnM-xN)*2,  (yN -ynM)*2, 90, 90); //right
 							ynM++;
@@ -465,7 +465,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 						}
 						yN++;
 					}
-					else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT){ //¥¥¥¥
+					else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT){ //ï¿½ï¿½ï¿½ï¿½
 						if (ynM>yN) {
 							g.drawArc(xN - (xnM-xN), yN - start, (xnM-xN)*2,  (ynM - yN)*2, 0, 90);  //right
 							xnM--;
@@ -491,10 +491,10 @@ class ArcTreeDrawing extends TreeDrawing  {
 	private boolean inBranch(Tree tree, int node, int h, int v) {
 		if (tree.nodeExists(node)) {
 			int nM = tree.motherOfNode(node);
-			int xN=x[node];
-			int xnM = x[nM];
-			int yN =y[node];
-			int ynM = y[nM];
+			int xN=(int)x[node];
+			int xnM = (int)x[nM];
+			int yN =(int)y[node];
+			int ynM = (int)y[nM];
 			double centerX, centerY,axisX, axisY;
 			centerX =  centerY =  axisX =   axisY =0;
 
@@ -623,35 +623,35 @@ class ArcTreeDrawing extends TreeDrawing  {
 	public  void fillTerminalBox(Tree tree, int node, Graphics g) {
 		Rectangle box;
 		if (treeDisplay.getOrientation()==TreeDisplay.UP) {
-			box = new Rectangle(x[node], y[node]-edgewidth/2-2, edgewidth, edgewidth);
+			box = new Rectangle((int)x[node], (int)y[node]-edgewidth/2-2, edgewidth, edgewidth);
 			g.fillArc(box.x, box.y, box.width, box.height, 0, 180);
 	        	g.setColor(treeDisplay.getBranchColor(node));
 			g.drawArc(box.x, box.y, box.width, box.height, 0, 180);
 			g.drawLine(box.x, box.y+ edgewidth/2, box.x+edgewidth,  box.y+ edgewidth/2);
 		}
 		else if (treeDisplay.getOrientation()==TreeDisplay.DOWN) {
-			box = new Rectangle(x[node], y[node] + 2, edgewidth, edgewidth);
+			box = new Rectangle((int)x[node], (int)y[node] + 2, edgewidth, edgewidth);
 			g.fillArc(box.x, box.y -  box.height/2, box.width, box.height, 180, 180);
 	        	g.setColor(treeDisplay.getBranchColor(node));
 			g.drawArc(box.x, box.y -  box.height/2, box.width, box.height, 180, 180);
 			g.drawLine(box.x, box.y , box.x+edgewidth,  box.y);
 		}
 		else  if (treeDisplay.getOrientation()==TreeDisplay.RIGHT) {
-			box = new Rectangle(x[node] + 2, y[node], edgewidth, edgewidth);
+			box = new Rectangle((int)x[node] + 2, (int)y[node], edgewidth, edgewidth);
 			g.fillArc(box.x- box.width/2, box.y, box.width, box.height, 270, 180);
 	        	g.setColor(treeDisplay.getBranchColor(node));
 			g.drawArc(box.x- box.width/2, box.y, box.width, box.height, 270, 180);
 			g.drawLine(box.x, box.y, box.x ,  box.y+edgewidth);
 		}
 		else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT) {
-			box = new Rectangle(x[node]-edgewidth/2-2, y[node], edgewidth, edgewidth);
+			box = new Rectangle((int)x[node]-edgewidth/2-2, (int)y[node], edgewidth, edgewidth);
 			g.fillArc(box.x, box.y, box.width, box.height, 90, 180);
 	        	g.setColor(treeDisplay.getBranchColor(node));
 			g.drawArc(box.x, box.y, box.width, box.height, 90, 180);
 			g.drawLine(box.x+edgewidth/2, box.y, box.x+edgewidth/2,  box.y+edgewidth);
 		}
 		else {
-			box = new Rectangle(x[node], y[node], edgewidth, edgewidth);
+			box = new Rectangle((int)x[node], (int)y[node], edgewidth, edgewidth);
 			g.fillArc(box.x, box.y, box.width, box.height, 0, 360);
 	        	g.setColor(treeDisplay.getBranchColor(node));
 			g.drawArc(box.x, box.y, box.width, box.height, 0, 360);
@@ -662,7 +662,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 		Rectangle box;
 		int numColors = colors.getNumColors();
 		if (treeDisplay.getOrientation()==TreeDisplay.UP) {
-			box = new Rectangle(x[node], y[node]-edgewidth/2-2, edgewidth, edgewidth);
+			box = new Rectangle((int)x[node], (int)y[node]-edgewidth/2-2, edgewidth, edgewidth);
 			for (int i=0; i<numColors; i++) {
 				g.setColor(colors.getColor(i, !tree.anySelected()|| tree.getSelected(node)));
 				g.fillArc(box.x, box.y, box.width, box.height, 0+ (i*180/numColors), 180- (i*180/numColors));
@@ -672,7 +672,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 			g.drawLine(box.x, box.y+ edgewidth/2, box.x+edgewidth,  box.y+ edgewidth/2);
 		}
 		else if (treeDisplay.getOrientation()==TreeDisplay.DOWN) {
-			box = new Rectangle(x[node], y[node] + 2, edgewidth, edgewidth);
+			box = new Rectangle((int)x[node], (int)y[node] + 2, edgewidth, edgewidth);
 			for (int i=0; i<numColors; i++) {
 				g.setColor(colors.getColor(i, !tree.anySelected()|| tree.getSelected(node)));
 				g.fillArc(box.x, box.y -  box.height/2, box.width, box.height, 180+ (i*180/numColors), 180- (i*180/numColors));
@@ -682,7 +682,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 			g.drawLine(box.x, box.y , box.x+edgewidth,  box.y);
 		}
 		else  if (treeDisplay.getOrientation()==TreeDisplay.RIGHT) {
-			box = new Rectangle(x[node] + 2, y[node], edgewidth, edgewidth);
+			box = new Rectangle((int)x[node] + 2, (int)y[node], edgewidth, edgewidth);
 			for (int i=0; i<numColors; i++) {
 				g.setColor(colors.getColor(i, !tree.anySelected()|| tree.getSelected(node)));
 				g.fillArc(box.x- box.width/2, box.y, box.width, box.height, 270+ (i*180/numColors), 180- (i*180/numColors));
@@ -692,7 +692,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 			g.drawLine(box.x, box.y, box.x ,  box.y+edgewidth);
 		}
 		else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT) {
-			box = new Rectangle(x[node]-edgewidth/2-2, y[node], edgewidth, edgewidth);
+			box = new Rectangle((int)x[node]-edgewidth/2-2, (int)y[node], edgewidth, edgewidth);
 			for (int i=0; i<numColors; i++) {
 				g.setColor(colors.getColor(i, !tree.anySelected()|| tree.getSelected(node)));
 				g.fillArc(box.x, box.y, box.width, box.height, 90+ (i*180/numColors), 180- (i*180/numColors));
@@ -702,7 +702,7 @@ class ArcTreeDrawing extends TreeDrawing  {
 			g.drawLine(box.x+edgewidth/2, box.y, box.x+edgewidth/2,  box.y+edgewidth);
 		}
 		else {
-			box = new Rectangle(x[node], y[node], edgewidth, edgewidth);
+			box = new Rectangle((int)x[node], (int)y[node], edgewidth, edgewidth);
 			for (int i=0; i<numColors; i++) {
 				g.setColor(colors.getColor(i, !tree.anySelected()|| tree.getSelected(node)));
 				g.fillArc(box.x, box.y, box.width, box.height, 0, 360);
@@ -741,8 +741,8 @@ class ArcTreeDrawing extends TreeDrawing  {
 	public Polygon nodePoly(int node) {
 		int offset = (getNodeWidth()-getEdgeWidth())/2;
 		int doubleOffset = (getNodeWidth()-getEdgeWidth());
-		int startX = x[node] - offset;
-		int startY= y[node] - offset;
+		int startX = (int)x[node] - offset;
+		int startY= (int)y[node] - offset;
 		if (treeDisplay.getOrientation()==TreeDisplay.RIGHT){
 			startX -= getNodeWidth()-doubleOffset;
 		} else if (treeDisplay.getOrientation()==TreeDisplay.DOWN)
@@ -780,10 +780,10 @@ class ArcTreeDrawing extends TreeDrawing  {
 						fraction.setValue(EDGESTART);  //TODO: this is just temporary: need to calculate value along branch.
 						if (tree.nodeExists(motherNode)) {
 							if (treeDisplay.getOrientation()==TreeDisplay.UP|| treeDisplay.getOrientation()==TreeDisplay.DOWN)  {
-								fraction.setValue( Math.abs(1.0*(y-this.y[motherNode])/(this.y[node]-this.y[motherNode])));
+								fraction.setValue( Math.abs(1.0*(y-(int)this.y[motherNode])/((int)this.y[node]-(int)this.y[motherNode])));
 							}
 							else if (treeDisplay.getOrientation()==TreeDisplay.LEFT || treeDisplay.getOrientation()==TreeDisplay.RIGHT) {
-								fraction.setValue( Math.abs(1.0*(x-this.x[motherNode])/(this.x[node]-this.x[motherNode])));
+								fraction.setValue( Math.abs(1.0*(x-(int)this.x[motherNode])/((int)this.x[node]-(int)this.x[motherNode])));
 							}
 						}
 					}

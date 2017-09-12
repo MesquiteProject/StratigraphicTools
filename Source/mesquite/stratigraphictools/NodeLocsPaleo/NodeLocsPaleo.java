@@ -1,5 +1,5 @@
 /* Code for stratigraphic tools package (http://mesquiteproject.org/... ).
-Copyright 2005 by Sébastien Josse, Thomas Moreau and Michel Laurin.
+Copyright 2005 by Sï¿½bastien Josse, Thomas Moreau and Michel Laurin.
 Based on Mesquite source code copyright 1997-2005 W. & D. Maddison.
 Available for Mesquite version 1.06
 Disclaimer:  The Mesquite source code is lengthy and we are few.  There are no doubt inefficiencies and goofs in this code. 
@@ -405,10 +405,10 @@ public class NodeLocsPaleo extends NodeLocsVH {
 				treeDrawing.x[N] =treeDrawing.x[fD];
 			}
 			else {
-				int nFDx = treeDrawing.x[fD];
-				int nFDy = treeDrawing.y[fD];
-				int nLDx = treeDrawing.x[lD];
-				int nLDy = treeDrawing.y[lD];
+				int nFDx = (int)treeDrawing.x[fD];
+				int nFDy = (int)treeDrawing.y[fD];
+				int nLDx = (int)treeDrawing.x[lD];
+				int nLDy = (int)treeDrawing.y[lD];
 				treeDrawing.y[N] = (-nFDx + nLDx+nFDy + nLDy) / 2;
 				treeDrawing.x[N] =(nFDx + nLDx - nFDy + nLDy) / 2;
 			}
@@ -422,8 +422,8 @@ public class NodeLocsPaleo extends NodeLocsVH {
 			int fD =tree.firstDaughterOfNode(N);
 			int lD =tree.lastDaughterOfNode(N);
 			if (lD!=fD)   {//> one descendant
-				int nFDx = treeDrawing.x[fD];
-				int nLDx = treeDrawing.x[lD];
+				int nFDx = (int)treeDrawing.x[fD];
+				int nLDx = (int)treeDrawing.x[lD];
 				treeDrawing.x[N] =(nFDx + nLDx) / 2;
 			}
 		}
@@ -438,7 +438,7 @@ public class NodeLocsPaleo extends NodeLocsVH {
 				else {
 					//more than 2 in triangle; triangle as wide as 3.  Thus each 
 					if (tree.rightmostTerminalOfNode(triangleBase)==N)
-						lastleft= treeDrawing.x[tree.leftmostTerminalOfNode(triangleBase)] + 2*treeDisplay.getTaxonSpacing();
+						lastleft= (int)(treeDrawing.x[tree.leftmostTerminalOfNode(triangleBase)] + 2*treeDisplay.getTaxonSpacing());
 					else 
 						lastleft+= (treeDisplay.getTaxonSpacing()*2)/(numInTriangle-1);
 				}
@@ -464,7 +464,7 @@ public class NodeLocsPaleo extends NodeLocsVH {
 			for (int d = tree.firstDaughterOfNode(N); tree.nodeExists(d); d = tree.nextSisterOfNode(d)) {
 				UPevenNodeLocs(treeDrawing, tree, d, evenVertSpacing);
 				if (treeDrawing.y[d]>deepest)
-					deepest = treeDrawing.y[d];
+					deepest = (int)treeDrawing.y[d];
 			}
 			treeDrawing.y[N] = deepest + evenVertSpacing;
 		}
@@ -507,10 +507,10 @@ public class NodeLocsPaleo extends NodeLocsVH {
 				DOWNCalcInternalLocs(treeDrawing, tree, d);
 			int nFD = tree.firstDaughterOfNode(N);
 			int nLD = tree.lastDaughterOfNode(N);
-			int nFDx = treeDrawing.x[nFD];
-			int nFDy = treeDrawing.y[nFD];
-			int nLDx = treeDrawing.x[nLD];
-			int nLDy = treeDrawing.y[nLD];
+			int nFDx = (int)treeDrawing.x[nFD];
+			int nFDy = (int)treeDrawing.y[nFD];
+			int nLDx = (int)treeDrawing.x[nLD];
+			int nLDy = (int)treeDrawing.y[nLD];
 			if (nLD==nFD)   {//only one descendant; put same as descendant, to be adjusted later
 				treeDrawing.y[N] = treeDrawing.y[nFD];
 				treeDrawing.x[N] =treeDrawing.x[nFD];
@@ -531,7 +531,7 @@ public class NodeLocsPaleo extends NodeLocsVH {
 				else {
 					//more than 2 in triangle; triangle as wide as 3.  Thus each 
 					if (tree.rightmostTerminalOfNode(triangleBase)==N)
-						lastleft= treeDrawing.x[tree.leftmostTerminalOfNode(triangleBase)] + 2*treeDisplay.getTaxonSpacing();
+						lastleft= (int)(treeDrawing.x[tree.leftmostTerminalOfNode(triangleBase)] + 2*treeDisplay.getTaxonSpacing());
 					else 
 						lastleft+= (treeDisplay.getTaxonSpacing()*2)/(numInTriangle-1);
 				}
@@ -562,7 +562,7 @@ public class NodeLocsPaleo extends NodeLocsVH {
 			for (int d = tree.firstDaughterOfNode(N); tree.nodeExists(d); d = tree.nextSisterOfNode(d)) {
 				DOWNevenNodeLocs(treeDrawing, tree, d, evenVertSpacing);
 				if (treeDrawing.y[d]<deepest)
-					deepest = treeDrawing.y[d];
+					deepest = (int)treeDrawing.y[d];
 			}
 			treeDrawing.y[N] = deepest - evenVertSpacing;
 		}
@@ -588,10 +588,10 @@ public class NodeLocsPaleo extends NodeLocsVH {
 				RIGHTCalcInternalLocs(treeDrawing, tree,  d);
 			int fD = tree.firstDaughterOfNode(N);
 			int lD = tree.lastDaughterOfNode(N);
-			int nFDx = treeDrawing.x[fD];
-			int nFDy = treeDrawing.y[fD];
-			int nLDx = treeDrawing.x[lD];
-			int nLDy = treeDrawing.y[lD];
+			int nFDx =(int) treeDrawing.x[fD];
+			int nFDy = (int)treeDrawing.y[fD];
+			int nLDx = (int)treeDrawing.x[lD];
+			int nLDy = (int)treeDrawing.y[lD];
 			if (lD==fD)   {//only one descendant
 				treeDrawing.y[N] = treeDrawing.y[fD];
 				treeDrawing.x[N] =treeDrawing.x[fD];
@@ -610,8 +610,8 @@ public class NodeLocsPaleo extends NodeLocsVH {
 			int fD =tree.firstDaughterOfNode(N);
 			int lD =tree.lastDaughterOfNode(N);
 			if (lD!=fD)   {//> one descendant
-				int nFDy = treeDrawing.y[fD];
-				int nLDy = treeDrawing.y[lD];
+				int nFDy = (int)treeDrawing.y[fD];
+				int nLDy = (int)treeDrawing.y[lD];
 				treeDrawing.y[N] =(nFDy + nLDy) / 2;
 			}
 		}
@@ -626,7 +626,7 @@ public class NodeLocsPaleo extends NodeLocsVH {
 				else {
 					//more than 2 in triangle; triangle as wide as 3.  Thus each 
 					if (tree.rightmostTerminalOfNode(triangleBase)==N)
-						lastleft= treeDrawing.y[tree.leftmostTerminalOfNode(triangleBase)] + 2*treeDisplay.getTaxonSpacing();
+						lastleft= (int)(treeDrawing.y[tree.leftmostTerminalOfNode(triangleBase)] + 2*treeDisplay.getTaxonSpacing());
 					else 
 						lastleft+= (treeDisplay.getTaxonSpacing()*2)/(numInTriangle-1);
 				}
@@ -658,7 +658,7 @@ public class NodeLocsPaleo extends NodeLocsVH {
 			for (int d = tree.firstDaughterOfNode(N); tree.nodeExists(d); d = tree.nextSisterOfNode(d)) {
 				RIGHTevenNodeLocs(treeDrawing, tree, d, evenVertSpacing);
 				if (treeDrawing.x[d]<deepest)
-					deepest = treeDrawing.x[d];
+					deepest = (int)treeDrawing.x[d];
 			}
 			treeDrawing.x[N] = deepest - evenVertSpacing;
 		}
@@ -683,10 +683,10 @@ public class NodeLocsPaleo extends NodeLocsVH {
 				LEFTCalcInternalLocs(treeDrawing, tree, d);
 			int fD = tree.firstDaughterOfNode(N);
 			int lD = tree.lastDaughterOfNode(N);
-			int nFDx = treeDrawing.x[fD];
-			int nFDy = treeDrawing.y[fD];
-			int nLDx = treeDrawing.x[lD];
-			int nLDy = treeDrawing.y[lD];
+			int nFDx = (int)treeDrawing.x[fD];
+			int nFDy = (int)treeDrawing.y[fD];
+			int nLDx = (int)treeDrawing.x[lD];
+			int nLDy = (int)treeDrawing.y[lD];
 			if (lD==fD)   {//only one descendant
 				treeDrawing.y[N] = treeDrawing.y[fD];
 				treeDrawing.x[N] =treeDrawing.x[fD];
@@ -707,7 +707,7 @@ public class NodeLocsPaleo extends NodeLocsVH {
 				else {
 					//more than 2 in triangle; triangle as wide as 3.  Thus each 
 					if (tree.rightmostTerminalOfNode(triangleBase)==N)
-						lastleft= treeDrawing.y[tree.leftmostTerminalOfNode(triangleBase)] + 2*treeDisplay.getTaxonSpacing();
+						lastleft= (int)(treeDrawing.y[tree.leftmostTerminalOfNode(triangleBase)] + 2*treeDisplay.getTaxonSpacing());
 					else 
 						lastleft+= (treeDisplay.getTaxonSpacing()*2)/(numInTriangle-1);
 				}
@@ -739,7 +739,7 @@ public class NodeLocsPaleo extends NodeLocsVH {
 			for (int d = tree.firstDaughterOfNode(N); tree.nodeExists(d); d = tree.nextSisterOfNode(d)) {
 				LEFTevenNodeLocs(treeDrawing, tree, d, evenVertSpacing);
 				if (treeDrawing.x[d]>deepest)
-					deepest = treeDrawing.x[d];
+					deepest = (int)treeDrawing.x[d];
 			}
 			treeDrawing.x[N] = deepest + evenVertSpacing;
 		}
@@ -761,9 +761,9 @@ public class NodeLocsPaleo extends NodeLocsVH {
 	private int edgeNode (TreeDrawing treeDrawing, Tree tree, int node, boolean x, boolean max) {
 		if (tree.nodeIsTerminal(node)) {
 			if (x)
-				return treeDrawing.x[node];
+				return (int)treeDrawing.x[node];
 			else
-				return treeDrawing.y[node];
+				return (int)treeDrawing.y[node];
 		}
 		int t;
 		if (max)
@@ -799,8 +799,8 @@ public class NodeLocsPaleo extends NodeLocsVH {
 			int nA = tree.depthToAncestor(N, bA);
 			int nD = tree.depthToAncestor(bD, N);
 			//	tree.setAssociatedLong(NameReference.getNameReference("color"), N, 5);
-			treeDrawing.x[N]=propAverage(treeDrawing.x[bD], treeDrawing.x[bA], nD, nA+nD);
-			treeDrawing.y[N]=propAverage(treeDrawing.y[bD], treeDrawing.y[bA], nD, nA+nD);
+			treeDrawing.x[N]=propAverage((int)treeDrawing.x[bD], (int)treeDrawing.x[bA], nD, nA+nD);
+			treeDrawing.y[N]=propAverage((int)treeDrawing.y[bD], (int)treeDrawing.y[bA], nD, nA+nD);
 		}
 		for (int d = tree.firstDaughterOfNode(N); tree.nodeExists(d); d = tree.nextSisterOfNode(d))
 			placeSingletons(treeDrawing, tree, d);
@@ -820,10 +820,10 @@ public class NodeLocsPaleo extends NodeLocsVH {
 						q = tree.firstDaughterOfNode(q);
 					}
 					//adjust nodes in chain
-					int bottomX =treeDrawing.x[tree.motherOfNode(N)] ;
-					int bottomY =treeDrawing.y[tree.motherOfNode(N)] ;
-					int topX =treeDrawing.x[N] ;
-					int topY =treeDrawing.y[N] ;
+					int bottomX =(int)treeDrawing.x[tree.motherOfNode(N)] ;
+					int bottomY =(int)treeDrawing.y[tree.motherOfNode(N)] ;
+					int topX =(int)treeDrawing.x[N] ;
+					int topY =(int)treeDrawing.y[N] ;
 					treeDrawing.y[N] = (bottomY+topY)/count;
 					treeDrawing.x[N] = (bottomX+topX)/count;
 					int count2=1;
@@ -1203,8 +1203,8 @@ public class NodeLocsPaleo extends NodeLocsVH {
 		if (treeDisplay.getOrientation()==TreeDisplay.UP) {
 			
 			double base = (totalScaleHeight-totalTreeHeight)*scaling +treeDisplay.getTreeDrawing().y[drawnRoot];
-			int leftEdge = treeDisplay.getTreeDrawing().x[tree.leftmostTerminalOfNode(drawnRoot)];
-			int rightEdge = treeDisplay.getTreeDrawing().x[tree.rightmostTerminalOfNode(drawnRoot)];
+			int leftEdge =(int) treeDisplay.getTreeDrawing().x[tree.leftmostTerminalOfNode(drawnRoot)];
+			int rightEdge =(int) treeDisplay.getTreeDrawing().x[tree.rightmostTerminalOfNode(drawnRoot)];
 			
 			
 			if(adjustScale.getValue() && data != null && fillScale.getValue() && extendScale.getValue() ) {
@@ -1340,8 +1340,8 @@ public class NodeLocsPaleo extends NodeLocsVH {
 			
 		}
 		else if (treeDisplay.getOrientation()==TreeDisplay.DOWN) {
-			int leftEdge = treeDisplay.getTreeDrawing().x[tree.leftmostTerminalOfNode(drawnRoot)];
-			int rightEdge = treeDisplay.getTreeDrawing().x[tree.rightmostTerminalOfNode(drawnRoot)];
+			int leftEdge = (int)treeDisplay.getTreeDrawing().x[tree.leftmostTerminalOfNode(drawnRoot)];
+			int rightEdge = (int)treeDisplay.getTreeDrawing().x[tree.rightmostTerminalOfNode(drawnRoot)];
 			double base = treeDrawing.y[drawnRoot];
 			if (fixedScale)
 				base += (totalTreeHeight - fixedDepth)*scaling;
@@ -1365,8 +1365,8 @@ public class NodeLocsPaleo extends NodeLocsVH {
 		else if (treeDisplay.getOrientation()==TreeDisplay.LEFT) {
 			fm=g.getFontMetrics(g.getFont());
 			int textHeight = fm.getHeight();
-			int leftEdge = treeDisplay.getTreeDrawing().y[tree.leftmostTerminalOfNode(drawnRoot)];
-			int rightEdge = treeDisplay.getTreeDrawing().y[tree.rightmostTerminalOfNode(drawnRoot)];
+			int leftEdge = (int)treeDisplay.getTreeDrawing().y[tree.leftmostTerminalOfNode(drawnRoot)];
+			int rightEdge = (int)treeDisplay.getTreeDrawing().y[tree.rightmostTerminalOfNode(drawnRoot)];
 			
 			//if fixed then base is centered on root!
 			double base = (totalScaleHeight-totalTreeHeight)*scaling +treeDisplay.getTreeDrawing().x[drawnRoot];
@@ -1390,8 +1390,8 @@ public class NodeLocsPaleo extends NodeLocsVH {
 		else if (treeDisplay.getOrientation()==TreeDisplay.RIGHT) {
 			fm=g.getFontMetrics(g.getFont());
 			int textHeight = fm.getHeight();
-			int leftEdge = treeDisplay.getTreeDrawing().y[tree.leftmostTerminalOfNode(drawnRoot)];
-			int rightEdge = treeDisplay.getTreeDrawing().y[tree.rightmostTerminalOfNode(drawnRoot)];
+			int leftEdge = (int)treeDisplay.getTreeDrawing().y[tree.leftmostTerminalOfNode(drawnRoot)];
+			int rightEdge = (int)treeDisplay.getTreeDrawing().y[tree.rightmostTerminalOfNode(drawnRoot)];
 			double base = treeDrawing.x[drawnRoot];
 			if (fixedScale)
 				base += (totalTreeHeight - fixedDepth)*scaling;

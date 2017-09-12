@@ -1,5 +1,5 @@
 /* Code for stratigraphic tools package (http://mesquiteproject.org/... ).
-Copyright 2005 by Sébastien Josse, Thomas Moreau and Michel Laurin.
+Copyright 2005 by Sï¿½bastien Josse, Thomas Moreau and Michel Laurin.
 Based on Mesquite source code copyright 1997-2005 W. & D. Maddison.
 Available for Mesquite version 1.06
 Disclaimer:  The Mesquite source code is lengthy and we are few.  There are no doubt inefficiencies and goofs in this code. 
@@ -90,7 +90,7 @@ public class aStratigraphictoolsIntro extends PackageIntro {
  	}
 	/*.................................................................................................................*/
   	 public String getPackageVersion() {
-		return "1.0c"; //released for compatibility with Mesquite 2.75
+		return "1.0d"; //released for compatibility with Mesquite 3.2
    	 }
 	/*.................................................................................................................*/
   	 public String getPackageAuthors() {

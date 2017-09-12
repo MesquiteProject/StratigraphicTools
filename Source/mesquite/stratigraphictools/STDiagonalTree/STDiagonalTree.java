@@ -1,5 +1,5 @@
 /* Code for stratigraphic tools package (http://mesquiteproject.org/... ).
-Copyright 2005 by Sébastien Josse, Thomas Moreau and Michel Laurin.
+Copyright 2005 by Sï¿½bastien Josse, Thomas Moreau and Michel Laurin.
 Based on Mesquite source code copyright 1997-2005 W. & D. Maddison.
 Available for Mesquite version 1.06
 Disclaimer:  The Mesquite source code is lengthy and we are few.  There are no doubt inefficiencies and goofs in this code. 
@@ -331,11 +331,11 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 		}
 	}
 	/*_________________________________________________*/
-	private void UPCalcFillBranchPolys(Tree tree, int node) {
+	private void UPCalcfillBranchPolys(Tree tree, int node) {
 		if (!tree.getAssociatedBit(triangleNameRef,node))
 		for (int d = tree.firstDaughterOfNode(node); tree.nodeExists(d); d = tree.nextSisterOfNode(d))
-			UPCalcFillBranchPolys(tree, d);
-		UPdefineFillPoly(node, fillBranchPoly[node], tree.nodeIsInternal(node),x[node],y[node], x[tree.motherOfNode(node)], y[tree.motherOfNode(node)], 0, 0);
+			UPCalcfillBranchPolys(tree, d);
+		UPdefineFillPoly(node, fillBranchPoly[node], tree.nodeIsInternal(node), (int)x[node], (int) (int)y[node], (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)], 0, 0);
 	}
 	/*_________________________________________________*/
 	private void UPdefinePoly(int node, Polygon poly, boolean internalNode, int Nx, int Ny, int mNx, int mNy) {
@@ -367,7 +367,7 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 		if (!tree.getAssociatedBit(triangleNameRef,node)) {
 			for (int d = tree.firstDaughterOfNode(node); tree.nodeExists(d); d = tree.nextSisterOfNode(d))
 				UPCalcBranchPolys(tree, d);
-			UPdefinePoly(node, branchPoly[node], tree.nodeIsInternal(node), x[node],y[node], x[tree.motherOfNode(node)], y[tree.motherOfNode(node)]);
+			UPdefinePoly(node, branchPoly[node], tree.nodeIsInternal(node), (int)x[node], (int) (int)y[node], (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)]);
 		}
 		else {
 				Polygon poly = branchPoly[node];
@@ -375,13 +375,13 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 				int mN = tree.motherOfNode(node);
 				int leftN = tree.leftmostTerminalOfNode(node);
 				int rightN = tree.rightmostTerminalOfNode(node);
-				poly.addPoint(x[node], y[node]);
-				poly.addPoint(x[leftN], y[leftN]);
-				poly.addPoint(x[rightN]+branchEdgeWidth(node), y[rightN]);
-				poly.addPoint(x[node]+branchEdgeWidth(node), y[node]);
-				poly.addPoint(x[mN]+branchEdgeWidth(node), y[mN]);
-				poly.addPoint(x[mN], y[mN]);
-				poly.addPoint(x[node], y[node]);
+				poly.addPoint((int)x[node],  (int)y[node]);
+				poly.addPoint((int)x[leftN],  (int)y[leftN]);
+				poly.addPoint((int)x[rightN]+branchEdgeWidth(node),  (int)y[rightN]);
+				poly.addPoint((int)x[node]+branchEdgeWidth(node),  (int)y[node]);
+				poly.addPoint((int)x[mN]+branchEdgeWidth(node),  (int)y[mN]);
+				poly.addPoint((int)x[mN],  (int)y[mN]);
+				poly.addPoint((int)x[node],  (int)y[node]);
 				poly.npoints=7;
 		}
 	}
@@ -446,11 +446,11 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 		}
 	}
 	/*_________________________________________________*/
-	private void DOWNCalcFillBranchPolys(Tree tree, int node) {
+	private void DOWNCalcfillBranchPolys(Tree tree, int node) {
 		if (!tree.getAssociatedBit(triangleNameRef,node))
 		for (int d = tree.firstDaughterOfNode(node); tree.nodeExists(d); d = tree.nextSisterOfNode(d))
-			DOWNCalcFillBranchPolys(tree, d);
-		DOWNdefineFillPoly(node, fillBranchPoly[node], tree.nodeIsInternal(node),x[node],y[node], x[tree.motherOfNode(node)], y[tree.motherOfNode(node)], 0, 0);
+			DOWNCalcfillBranchPolys(tree, d);
+		DOWNdefineFillPoly(node, fillBranchPoly[node], tree.nodeIsInternal(node), (int)x[node], (int) (int)y[node], (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)], 0, 0);
 	}
 	/*_________________________________________________*/
 	private void DOWNdefinePoly(int node, Polygon poly, boolean internalNode, int Nx, int Ny, int mNx, int mNy) {
@@ -482,7 +482,7 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 		if (!tree.getAssociatedBit(triangleNameRef,node)) {
 			for (int d = tree.firstDaughterOfNode(node); tree.nodeExists(d); d = tree.nextSisterOfNode(d))
 				DOWNCalcBranchPolys(tree, d);
-			DOWNdefinePoly(node, branchPoly[node], tree.nodeIsInternal(node),x[node],y[node], x[tree.motherOfNode(node)], y[tree.motherOfNode(node)]);
+			DOWNdefinePoly(node, branchPoly[node], tree.nodeIsInternal(node), (int)x[node], (int) (int)y[node], (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)]);
 		}
 		else {
 				Polygon poly = branchPoly[node];
@@ -490,13 +490,13 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 				int mN = tree.motherOfNode(node);
 				int leftN = tree.leftmostTerminalOfNode(node);
 				int rightN = tree.rightmostTerminalOfNode(node);
-				poly.addPoint(x[node], y[node]);
-				poly.addPoint(x[leftN], y[leftN]);
-				poly.addPoint(x[rightN]+branchEdgeWidth(node), y[rightN]);
-				poly.addPoint(x[node]+branchEdgeWidth(node), y[node]);
-				poly.addPoint(x[mN]+branchEdgeWidth(node), y[mN]);
-				poly.addPoint(x[mN], y[mN]);
-				poly.addPoint(x[node], y[node]);
+				poly.addPoint((int)x[node],  (int)y[node]);
+				poly.addPoint((int)x[leftN],  (int)y[leftN]);
+				poly.addPoint((int)x[rightN]+branchEdgeWidth(node),  (int)y[rightN]);
+				poly.addPoint((int)x[node]+branchEdgeWidth(node),  (int)y[node]);
+				poly.addPoint((int)x[mN]+branchEdgeWidth(node),  (int)y[mN]);
+				poly.addPoint((int)x[mN],  (int)y[mN]);
+				poly.addPoint((int)x[node],  (int)y[node]);
 				poly.npoints=7;
 		}
 	}
@@ -561,11 +561,11 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 		}
 	}
 	/*_________________________________________________*/
-	private void RIGHTCalcFillBranchPolys(Tree tree, int node) {
+	private void RIGHTCalcfillBranchPolys(Tree tree, int node) {
 		if (!tree.getAssociatedBit(triangleNameRef,node))
 		for (int d = tree.firstDaughterOfNode(node); tree.nodeExists(d); d = tree.nextSisterOfNode(d))
-			RIGHTCalcFillBranchPolys(tree, d);
-		RIGHTdefineFillPoly(node, fillBranchPoly[node], tree.nodeIsInternal(node),x[node],y[node], x[tree.motherOfNode(node)], y[tree.motherOfNode(node)], 0, 0);
+			RIGHTCalcfillBranchPolys(tree, d);
+		RIGHTdefineFillPoly(node, fillBranchPoly[node], tree.nodeIsInternal(node), (int)x[node], (int) (int)y[node], (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)], 0, 0);
 	}
 	/*_________________________________________________*/
 	private void RIGHTdefinePoly(int node, Polygon poly, boolean internalNode, int Nx, int Ny, int mNx, int mNy) {
@@ -597,7 +597,7 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 		if (!tree.getAssociatedBit(triangleNameRef,node)) {
 			for (int d = tree.firstDaughterOfNode(node); tree.nodeExists(d); d = tree.nextSisterOfNode(d))
 				RIGHTCalcBranchPolys(tree, d);
-			RIGHTdefinePoly(node, branchPoly[node], tree.nodeIsInternal(node),x[node],y[node], x[tree.motherOfNode(node)], y[tree.motherOfNode(node)]);
+			RIGHTdefinePoly(node, branchPoly[node], tree.nodeIsInternal(node), (int)x[node], (int) (int)y[node], (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)]);
 		}
 		else {
 				Polygon poly = branchPoly[node];
@@ -605,13 +605,13 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 				int mN = tree.motherOfNode(node);
 				int leftN = tree.leftmostTerminalOfNode(node);
 				int rightN = tree.rightmostTerminalOfNode(node);
-				poly.addPoint(x[node], y[node]);
-				poly.addPoint(x[leftN], y[leftN]);
-				poly.addPoint(x[rightN], y[rightN]+branchEdgeWidth(node));
-				poly.addPoint(x[node], y[node]+branchEdgeWidth(node));
-				poly.addPoint(x[mN], y[mN]+branchEdgeWidth(node));
-				poly.addPoint(x[mN], y[mN]);
-				poly.addPoint(x[node], y[node]);
+				poly.addPoint((int)x[node],  (int)y[node]);
+				poly.addPoint((int)x[leftN],  (int)y[leftN]);
+				poly.addPoint((int)x[rightN],  (int)y[rightN]+branchEdgeWidth(node));
+				poly.addPoint((int)x[node],  (int)y[node]+branchEdgeWidth(node));
+				poly.addPoint((int)x[mN],  (int)y[mN]+branchEdgeWidth(node));
+				poly.addPoint((int)x[mN],  (int)y[mN]);
+				poly.addPoint((int)x[node],  (int)y[node]);
 				poly.npoints=7;
 		}
 	}
@@ -676,11 +676,11 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 		}
 	}
 	/*_________________________________________________*/
-	private void LEFTCalcFillBranchPolys(Tree tree, int node) {
+	private void LEFTCalcfillBranchPolys(Tree tree, int node) {
 		if (!tree.getAssociatedBit(triangleNameRef,node))
 		for (int d = tree.firstDaughterOfNode(node); tree.nodeExists(d); d = tree.nextSisterOfNode(d))
-			LEFTCalcFillBranchPolys(tree, d);
-		LEFTdefineFillPoly(node, fillBranchPoly[node], tree.nodeIsInternal(node),x[node],y[node], x[tree.motherOfNode(node)], y[tree.motherOfNode(node)], 0, 0);
+			LEFTCalcfillBranchPolys(tree, d);
+		LEFTdefineFillPoly(node, fillBranchPoly[node], tree.nodeIsInternal(node), (int)x[node], (int) (int)y[node], (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)], 0, 0);
 	}
 	/*_________________________________________________*/
 	private void LEFTdefinePoly(int node, Polygon poly, boolean internalNode, int Nx, int Ny, int mNx, int mNy) {
@@ -712,7 +712,7 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 		if (!tree.getAssociatedBit(triangleNameRef,node)) {
 			for (int d = tree.firstDaughterOfNode(node); tree.nodeExists(d); d = tree.nextSisterOfNode(d))
 				LEFTCalcBranchPolys(tree, d);
-			LEFTdefinePoly(node, branchPoly[node], tree.nodeIsInternal(node),x[node],y[node], x[tree.motherOfNode(node)], y[tree.motherOfNode(node)]);
+			LEFTdefinePoly(node, branchPoly[node], tree.nodeIsInternal(node), (int)x[node], (int) (int)y[node], (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)]);
 		}
 		else {
 				Polygon poly = branchPoly[node];
@@ -720,13 +720,13 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 				int mN = tree.motherOfNode(node);
 				int leftN = tree.leftmostTerminalOfNode(node);
 				int rightN = tree.rightmostTerminalOfNode(node);
-				poly.addPoint(x[node], y[node]);
-				poly.addPoint(x[leftN], y[leftN]);
-				poly.addPoint(x[rightN], y[rightN]+branchEdgeWidth(node));
-				poly.addPoint(x[node], y[node]+branchEdgeWidth(node));
-				poly.addPoint(x[mN], y[mN]+branchEdgeWidth(node));
-				poly.addPoint(x[mN], y[mN]);
-				poly.addPoint(x[node], y[node]);
+				poly.addPoint((int)x[node],  (int)y[node]);
+				poly.addPoint((int)x[leftN],  (int)y[leftN]);
+				poly.addPoint((int)x[rightN],  (int)y[rightN]+branchEdgeWidth(node));
+				poly.addPoint((int)x[node],  (int)y[node]+branchEdgeWidth(node));
+				poly.addPoint((int)x[mN],  (int)y[mN]+branchEdgeWidth(node));
+				poly.addPoint((int)x[mN],  (int)y[mN]);
+				poly.addPoint((int)x[node],  (int)y[node]);
 				poly.npoints=7;
 		}
 	}
@@ -734,9 +734,9 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 	private void calculateLines(Tree tree, int node) {
 		for (int d = tree.firstDaughterOfNode(node); tree.nodeExists(d); d = tree.nextSisterOfNode(d))
 			calculateLines( tree, d);
-		lineTipY[node]=y[node];
+		lineTipY[node]= (int)y[node];
 		lineTipX[node]=x[node];
-		lineBaseY[node]=y[tree.motherOfNode(node)];
+		lineBaseY[node]= (int)y[tree.motherOfNode(node)];
 		lineBaseX[node]=x[tree.motherOfNode(node)];
 	}
 	/*_________________________________________________*/
@@ -758,20 +758,20 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 		treeDisplay.setMinimumTaxonNameDistance(edgeWidth, 5);
 		if (treeDisplay.getOrientation()==TreeDisplay.UP) {
 			UPCalcBranchPolys(tree, drawnRoot);
-			UPCalcFillBranchPolys(tree, drawnRoot);
+			UPCalcfillBranchPolys(tree, drawnRoot);
 		}
 
 		else if (treeDisplay.getOrientation()==TreeDisplay.DOWN){
 			DOWNCalcBranchPolys(tree, drawnRoot);
-			DOWNCalcFillBranchPolys(tree, drawnRoot);
+			DOWNCalcfillBranchPolys(tree, drawnRoot);
 		}
 		else  if (treeDisplay.getOrientation()==TreeDisplay.RIGHT) {
 			RIGHTCalcBranchPolys(tree, drawnRoot);
-			RIGHTCalcFillBranchPolys(tree, drawnRoot);
+			RIGHTCalcfillBranchPolys(tree, drawnRoot);
 		}
 		else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT){
 			LEFTCalcBranchPolys(tree, drawnRoot);
-			LEFTCalcFillBranchPolys(tree, drawnRoot);
+			LEFTCalcfillBranchPolys(tree, drawnRoot);
 		}
 	}
 	/*_________________________________________________*/
@@ -784,11 +784,11 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 			g.setColor(Color.blue);
 		if (treeDisplay.getOrientation()==TreeDisplay.DOWN || treeDisplay.getOrientation()==TreeDisplay.UP){
 			for (int i=0; i<4; i++)
-				g.drawLine(x[node]-2 - i, y[node], x[tree.motherOfNode(node)]-2 - i, y[tree.motherOfNode(node)]);
+				g.drawLine((int)x[node]-2 - i,  (int)y[node], (int)x[tree.motherOfNode(node)]-2 - i,  (int)y[tree.motherOfNode(node)]);
 		}
 		else {
 			for (int i=0; i<4; i++)
-				g.drawLine(x[node], y[node]-2 - i, x[tree.motherOfNode(node)], y[tree.motherOfNode(node)]-2 - i);
+				g.drawLine((int)x[node],  (int)y[node]-2 - i, (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)]-2 - i);
 		}
 		g.setColor(tC);
 	}
@@ -812,10 +812,10 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 					for (int i=1; i<=tree.numberOfParentsOfNode(node); i++) {
 						int anc =tree.parentOfNode(node, i);
 						if (anc!= tree.motherOfNode(node)) {
-							g.drawLine(x[node],y[node], x[tree.parentOfNode(node, i)],y[tree.parentOfNode(node, i)]);
-							g.drawLine(x[node]+1,y[node], x[tree.parentOfNode(node, i)]+1,y[tree.parentOfNode(node, i)]);
-							g.drawLine(x[node],y[node]+1, x[tree.parentOfNode(node, i)],y[tree.parentOfNode(node, i)]+1);
-							g.drawLine(x[node]+1,y[node]+1, x[tree.parentOfNode(node, i)]+1,y[tree.parentOfNode(node, i)]+1);
+							g.drawLine((int)x[node], (int) (int)y[node], (int)x[tree.parentOfNode(node, i)], (int) (int)y[tree.parentOfNode(node, i)]);
+							g.drawLine((int)x[node]+1, (int) (int)y[node], (int)x[tree.parentOfNode(node, i)]+1, (int) (int)y[tree.parentOfNode(node, i)]);
+							g.drawLine((int)x[node], (int) (int)y[node]+1, (int)x[tree.parentOfNode(node, i)], (int) (int)y[tree.parentOfNode(node, i)]+1);
+							g.drawLine((int)x[node]+1, (int) (int)y[node]+1, (int)x[tree.parentOfNode(node, i)]+1, (int) (int)y[tree.parentOfNode(node, i)]+1);
 						}
 					}
 				}
@@ -824,31 +824,31 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 				if (treeDisplay.getOrientation()==TreeDisplay.UP) {
 					/*g.setColor(Color.red);
 					for (int i=0; i<edgeWidth; i++) 
-						g.drawLine(x[node]+i,y[node], x[tree.rightmostTerminalOfNode(node)]+i,y[tree.rightmostTerminalOfNode(node)]);
+						g.drawLine((int)x[node]+i, (int) (int)y[node], (int)x[tree.rightmostTerminalOfNode(node)]+i, (int) (int)y[tree.rightmostTerminalOfNode(node)]);
 					
 					g.setColor(Color.blue);
 					for (int i=0; i<edgeWidth; i++)
-						g.drawLine(x[node]+i,y[node], x[tree.leftmostTerminalOfNode(node)]+i,y[tree.leftmostTerminalOfNode(node)]);
+						g.drawLine((int)x[node]+i, (int) (int)y[node], (int)x[tree.leftmostTerminalOfNode(node)]+i, (int) (int)y[tree.leftmostTerminalOfNode(node)]);
 					
 						g.setColor(Color.green);
 					for (int i=0; i<edgeWidth*0.71; i++) {
-						g.drawLine(x[tree.leftmostTerminalOfNode(node)]+i,y[tree.leftmostTerminalOfNode(node)]+i, x[tree.rightmostTerminalOfNode(node)]-i,y[tree.rightmostTerminalOfNode(node)]+i);
+						g.drawLine((int)x[tree.leftmostTerminalOfNode(node)]+i, (int) (int)y[tree.leftmostTerminalOfNode(node)]+i, (int)x[tree.rightmostTerminalOfNode(node)]-i, (int) (int)y[tree.rightmostTerminalOfNode(node)]+i);
 					}*/
 				}
 				else if (treeDisplay.getOrientation()==TreeDisplay.DOWN) {
 					/*g.setColor(Color.blue);
 					for (int i=0; i<edgeWidth; i++) {
-						g.drawLine(x[node]+i,y[node], x[tree.leftmostTerminalOfNode(node)]+i,y[tree.leftmostTerminalOfNode(node)]);
-						g.drawLine(x[tree.leftmostTerminalOfNode(node)]+i,y[tree.leftmostTerminalOfNode(node)]-i, x[tree.rightmostTerminalOfNode(node)]-i,y[tree.rightmostTerminalOfNode(node)]-i);
-						g.drawLine(x[node]+i,y[node], x[tree.rightmostTerminalOfNode(node)]+i,y[tree.rightmostTerminalOfNode(node)]);
+						g.drawLine((int)x[node]+i, (int) (int)y[node], (int)x[tree.leftmostTerminalOfNode(node)]+i, (int) (int)y[tree.leftmostTerminalOfNode(node)]);
+						g.drawLine((int)x[tree.leftmostTerminalOfNode(node)]+i, (int) (int)y[tree.leftmostTerminalOfNode(node)]-i, (int)x[tree.rightmostTerminalOfNode(node)]-i, (int) (int)y[tree.rightmostTerminalOfNode(node)]-i);
+						g.drawLine((int)x[node]+i, (int) (int)y[node], (int)x[tree.rightmostTerminalOfNode(node)]+i, (int) (int)y[tree.rightmostTerminalOfNode(node)]);
 					}
 					*/
 				}
 			/*	for (int j=0; j<2; j++)
 				for (int i=0; i<2; i++) {
-					g.drawLine(x[node]+i,y[node]+j, x[tree.leftmostTerminalOfNode(node)]+i,y[tree.leftmostTerminalOfNode(node)]+j);
-					g.drawLine(x[tree.leftmostTerminalOfNode(node)]+i,y[tree.leftmostTerminalOfNode(node)]+j, x[tree.rightmostTerminalOfNode(node)]+i,y[tree.rightmostTerminalOfNode(node)]+j);
-					g.drawLine(x[node]+i,y[node]+j, x[tree.rightmostTerminalOfNode(node)]+i,y[tree.rightmostTerminalOfNode(node)]+j);
+					g.drawLine((int)x[node]+i, (int) (int)y[node]+j, (int)x[tree.leftmostTerminalOfNode(node)]+i, (int) (int)y[tree.leftmostTerminalOfNode(node)]+j);
+					g.drawLine((int)x[tree.leftmostTerminalOfNode(node)]+i, (int) (int)y[tree.leftmostTerminalOfNode(node)]+j, (int)x[tree.rightmostTerminalOfNode(node)]+i, (int) (int)y[tree.rightmostTerminalOfNode(node)]+j);
+					g.drawLine((int)x[node]+i, (int) (int)y[node]+j, (int)x[tree.rightmostTerminalOfNode(node)]+i, (int) (int)y[tree.rightmostTerminalOfNode(node)]+j);
 				}*/
 			}
 
@@ -907,15 +907,15 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 		Rectangle box;
 		int ew = branchEdgeWidth(node)-2;
 		if (treeDisplay.getOrientation()==TreeDisplay.UP) 
-			box = new Rectangle(x[node], y[node]-ew-3, ew, ew);
+			box = new Rectangle((int)x[node],  (int)y[node]-ew-3, ew, ew);
 		else if (treeDisplay.getOrientation()==TreeDisplay.DOWN)
-			box = new Rectangle(x[node], y[node]+2, ew, ew);
+			box = new Rectangle((int)x[node],  (int)y[node]+2, ew, ew);
 		else  if (treeDisplay.getOrientation()==TreeDisplay.RIGHT) 
-			box = new Rectangle(x[node]+1, y[node], ew, ew);
+			box = new Rectangle((int)x[node]+1,  (int)y[node], ew, ew);
 		else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT)
-			box = new Rectangle(x[node]-ew-3, y[node], ew, ew);
+			box = new Rectangle((int)x[node]-ew-3,  (int)y[node], ew, ew);
 		else 
-			box = new Rectangle(x[node], y[node], ew, ew);
+			box = new Rectangle((int)x[node],  (int)y[node], ew, ew);
 		g.fillRect(box.x, box.y, box.width, box.height);
 		g.setColor(treeDisplay.getBranchColor(node));
 		g.drawRect(box.x, box.y, box.width, box.height);
@@ -926,15 +926,15 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 		Rectangle box;
 		int ew = branchEdgeWidth(node)-2;
 		if (treeDisplay.getOrientation()==TreeDisplay.UP) 
-			box = new Rectangle(x[node], y[node]-ew-3, ew, ew);
+			box = new Rectangle((int)x[node],  (int)y[node]-ew-3, ew, ew);
 		else if (treeDisplay.getOrientation()==TreeDisplay.DOWN)
-			box = new Rectangle(x[node], y[node]+2, ew, ew);
+			box = new Rectangle((int)x[node],  (int)y[node]+2, ew, ew);
 		else  if (treeDisplay.getOrientation()==TreeDisplay.RIGHT) 
-			box = new Rectangle(x[node]+1, y[node], ew, ew);
+			box = new Rectangle((int)x[node]+1,  (int)y[node], ew, ew);
 		else  if (treeDisplay.getOrientation()==TreeDisplay.LEFT)
-			box = new Rectangle(x[node]-ew-3, y[node], ew, ew);
+			box = new Rectangle((int)x[node]-ew-3,  (int)y[node], ew, ew);
 		else 
-			box = new Rectangle(x[node], y[node], ew, ew);
+			box = new Rectangle((int)x[node],  (int)y[node], ew, ew);
 		for (int i=0; i<colors.getNumColors(); i++) {
 			Color color;
 					if ((color = colors.getColor(i, !tree.anySelected()|| tree.getSelected(node)))!=null)
@@ -954,7 +954,7 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 			int numColors = colors.getNumColors();
 			if (treeDisplay.getOrientation()==TreeDisplay.UP) {
 				for (int i=0; i<numColors; i++) {
-					UPdefineFillPoly(node, utilityPolygon, tree.nodeIsInternal(node), x[node], y[node], x[tree.motherOfNode(node)], y[tree.motherOfNode(node)], i+1, colors.getNumColors());
+					UPdefineFillPoly(node, utilityPolygon, tree.nodeIsInternal(node), (int)x[node],  (int)y[node], (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)], i+1, colors.getNumColors());
 					Color color;
 					if ((color = colors.getColor(i, !tree.anySelected()|| tree.getSelected(node)))!=null)
 						g.setColor(color);
@@ -963,7 +963,7 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 			}
 			else if (treeDisplay.getOrientation()==TreeDisplay.DOWN) {
 				for (int i=0; i<numColors; i++) {
-					DOWNdefineFillPoly(node, utilityPolygon, tree.nodeIsInternal(node), x[node], y[node], x[tree.motherOfNode(node)], y[tree.motherOfNode(node)], i+1, colors.getNumColors());
+					DOWNdefineFillPoly(node, utilityPolygon, tree.nodeIsInternal(node), (int)x[node],  (int)y[node], (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)], i+1, colors.getNumColors());
 					Color color;
 					if ((color = colors.getColor(i, !tree.anySelected()|| tree.getSelected(node)))!=null)
 						g.setColor(color);
@@ -972,7 +972,7 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 			}
 			else if (treeDisplay.getOrientation()==TreeDisplay.RIGHT) {
 				for (int i=0; i<numColors; i++) {
-					RIGHTdefineFillPoly(node, utilityPolygon, tree.nodeIsInternal(node), x[node], y[node], x[tree.motherOfNode(node)], y[tree.motherOfNode(node)], i+1, colors.getNumColors());
+					RIGHTdefineFillPoly(node, utilityPolygon, tree.nodeIsInternal(node), (int)x[node],  (int)y[node], (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)], i+1, colors.getNumColors());
 					Color color;
 					if ((color = colors.getColor(i, !tree.anySelected()|| tree.getSelected(node)))!=null)
 						g.setColor(color);
@@ -981,7 +981,7 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 			}
 			else if (treeDisplay.getOrientation()==TreeDisplay.LEFT){
 				for (int i=0; i<numColors; i++) {
-					LEFTdefineFillPoly(node, utilityPolygon, tree.nodeIsInternal(node), x[node], y[node], x[tree.motherOfNode(node)], y[tree.motherOfNode(node)], i+1, colors.getNumColors());
+					LEFTdefineFillPoly(node, utilityPolygon, tree.nodeIsInternal(node), (int)x[node],  (int)y[node], (int)x[tree.motherOfNode(node)],  (int)y[tree.motherOfNode(node)], i+1, colors.getNumColors());
 					Color color;
 					if ((color = colors.getColor(i, !tree.anySelected()|| tree.getSelected(node)))!=null)
 						g.setColor(color);
@@ -1005,11 +1005,11 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 		int startX =0;
 		int startY =0;
 		if (treeDisplay.getOrientation()==TreeDisplay.UP || treeDisplay.getOrientation()==TreeDisplay.DOWN){
-			startX = x[node]+halfNodeWidth-offset;
-			startY= y[node] -halfNodeWidth;
+			startX = (int)x[node]+halfNodeWidth-offset;
+			startY=  (int)y[node] -halfNodeWidth;
 		}	else if (treeDisplay.getOrientation()==TreeDisplay.RIGHT || treeDisplay.getOrientation()==TreeDisplay.LEFT){
-			startX = x[node];
-			startY= y[node]-offset;
+			startX = (int)x[node];
+			startY=  (int)y[node]-offset;
 		}
 		Polygon poly = new Polygon();
 		poly.npoints=0;
@@ -1042,7 +1042,7 @@ class DiagonalTreeDrawing extends TreeDrawing  {
 						int motherNode = tree.motherOfNode(node);
 						fraction.setValue(EDGESTART);  //TODO: this is just temporary: need to calculate value along branch.
 						if (tree.nodeExists(motherNode)) {
-							fraction.setValue(GraphicsUtil.fractionAlongLine(x, y, this.x[motherNode], this.y[motherNode], this.x[node], this.y[node],isRIGHT()||isLEFT(), isUP()||isDOWN()));
+							fraction.setValue(GraphicsUtil.fractionAlongLine(x, y, (int)this.x[motherNode],  (int)this.y[motherNode], this.x[node],  (int)this.y[node],isRIGHT()||isLEFT(), isUP()||isDOWN()));
 						}
 					}
 			}
